@@ -1,6 +1,18 @@
-#include <stdlib.h>
-#include "libft/inc/libft.h"
-int	get_nb_int(char *str)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getnbr.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phanna <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/05 15:53:21 by phanna            #+#    #+#             */
+/*   Updated: 2018/01/05 15:53:36 by phanna           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "inc/filler.h"
+
+int	get_nb_intt(char *str)
 {
 	int	i;
 	int	ret;
@@ -20,21 +32,19 @@ int	get_nb_int(char *str)
 	}
 	return (ret);
 }
-#include <stdio.h>
-int	*getint(char *str)
+
+int	*getintt(char *str)
 {
 	int	*ret;
 	int	nb;
 	int	i;
 	int	j;
 	FILE	*int1;
-//	FILE	*int2;
 
 	int1 = fopen("int1.txt", "w+");
-//	int2 = fopen("int2.txt", "w+");
 	i = 0;
 	j = 0;
-	nb = get_nb_int(str);
+	nb = get_nb_intt(str);
 	ret = malloc(sizeof(int) * nb);
 	while (str[i])
 	{
