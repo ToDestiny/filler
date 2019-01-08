@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/25 17:25:25 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/26 16:04:36 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	int	i;
+	int j;
+	int	len;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	i = 0;
+	len = ft_strlen(str);
+	if (!(*to_find))
+		return ((char *)str);
+	while (len > 0)
 	{
-		break;	
-	}	
-	//map = ft_map();
-
+		j = 0;
+		while (str[i + j] == to_find[j] && to_find[j] != '\0')
+			j++;
+		if (to_find[j] == '\0')
+			return ((char *)str + i);
+		i++;
+		len--;
+	}
 	return (0);
 }

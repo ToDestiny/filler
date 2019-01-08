@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/29 17:24:07 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/29 17:24:09 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+char	*ft_strtrim(char const *s)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	char const			*end;
+	char const			*beg;
+	char				*dst;
+	unsigned int		i;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	if (s)
 	{
-		break;	
-	}	
-	//map = ft_map();
-
+		i = 0;
+		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+			i++;
+		beg = (s + i);
+		end = (s + i);
+		while (s[i])
+		{
+			if (s[i] >= 33 && s[i] <= 126)
+				end = s + i;
+			i++;
+		}
+		if ((end - beg) > 0)
+			end++;
+		dst = ft_strsub(s, beg - s, end - beg);
+		return (dst);
+	}
 	return (0);
 }

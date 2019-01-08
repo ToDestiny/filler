@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/27 16:14:05 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/27 16:14:11 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+size_t		ft_strlcat(char *dst, const char *src, size_t size)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	char		*d;
+	const char	*s;
+	size_t		n;
+	size_t		dlen;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	d = dst;
+	s = src;
+	n = size;
+	while (n-- != 0 && *d != '\0')
+		d++;
+	dlen = d - dst;
+	n = size - dlen;
+	if (n == 0)
+		return (dlen + ft_strlen(s));
+	while (*s != '\0')
 	{
-		break;	
-	}	
-	//map = ft_map();
-
-	return (0);
+		if (n != 1)
+		{
+			*d++ = *s;
+			n--;
+		}
+		s++;
+	}
+	*d = '\0';
+	return (dlen + (s - src));
 }

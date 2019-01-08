@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/27 10:56:27 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/27 11:17:04 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+char	*ft_strrchr(const char *s, int c)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	int		len;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
-	{
-		break;	
-	}	
-	//map = ft_map();
-
-	return (0);
+	len = ft_strlen(s);
+	while (s[len] != (char)c && len > 0)
+		len--;
+	if (*(s + len) == ((char)c))
+		return ((char *)(s + len));
+	return (NULL);
 }

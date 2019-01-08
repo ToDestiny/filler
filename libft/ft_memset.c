@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/27 14:38:06 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/27 15:04:59 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
-
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
-	{
-		break;	
-	}	
-	//map = ft_map();
-
-	return (0);
+	while (n > 0)
+		*((unsigned char *)str + n-- - 1) = (unsigned char)c;
+	return (str);
 }

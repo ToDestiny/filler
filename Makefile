@@ -5,40 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: acolas <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/28 14:35:06 by acolas            #+#    #+#              #
-#    Updated: 2017/11/29 14:54:38 by acolas           ###   ########.fr        #
+#    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
+#    Updated: 2019/01/07 17:26:04 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-ME = acolas.filler
-SRC_DIR = ./src
-SRC = main.c \	
-									
+NAME = acolas.filler
+SRC = main.c \
+	  src/ft_set_player.c\
 
 CC = gcc
-OBJ = $(SRC:%.c=%.o)
-	CFLAGS = -Wall -Werror -Wextra
-	RM = rm -f
-	DIR_LIB	= libft
-	LIBFT	= $(DIR_LIB)/libft.a
+HEADER = ./libft/libft.a
+CFLAGS = -Wall -Wextra -Werror
+.PHONY : all clean fclean re
 
 all : $(NAME)
 
-$(NAME): $(LIBFT)
-		@$(CC) $(CFLAGS) -c $(addprefix $(SRC_DIR)/,$(SRC))
-		@ar -rc $(NAME) $(OBJ) ./libft/*.o
+$(NAME) :
+		@make -C libft
+		@$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(HEADER)
 
-$(LIBFT):
-		@make -C $(DIR_LIB)
+clean :
+		@make -C libft clean
+		@/bin/rm -rf $(OBJ)
 
-clean:
-		@make clean -C $(DIR_LIB)
-		@$(RM) $(OBJ)
+fclean : clean
+		@make -C libft fclean
+		@/bin/rm -rf $(NAME)
 
-fclean: clean
-		@make fclean -C $(DIR_LIB) 
-		@$(RM) $(NAME) $(HEADER)
-
-re: fclean all
-
-.PHONY : clean fclean re all
+re : fclean all

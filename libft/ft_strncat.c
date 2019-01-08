@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/27 12:12:42 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/27 12:12:43 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+char	*ft_strncat(char *dest, const char *src, size_t n)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	size_t		i;
+	size_t		j;
+	int			len;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	i = 0;
+	j = ft_strlen(dest);
+	len = ft_strlen(src);
+	while (len > 0 && i < n)
 	{
-		break;	
-	}	
-	//map = ft_map();
-
-	return (0);
+		dest[j] = src[i];
+		i++;
+		j++;
+		len--;
+	}
+	dest[j] = '\0';
+	return (dest);
 }

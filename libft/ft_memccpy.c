@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/28 19:14:03 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/28 19:14:05 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	unsigned char			*dstc;
+	const unsigned char		*srcc;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	dstc = (unsigned char *)dst;
+	srcc = (const unsigned char *)src;
+	if (n)
 	{
-		break;	
-	}	
-	//map = ft_map();
-
+		while (n != '\0')
+		{
+			if ((*dstc++ = *srcc++) == (unsigned char)c)
+				return (dstc);
+			n--;
+		}
+	}
 	return (0);
 }

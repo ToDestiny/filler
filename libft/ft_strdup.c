@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/08 15:58:26 by acolas           ###   ########.fr       */
+/*   Created: 2017/04/26 15:43:26 by acolas            #+#    #+#             */
+/*   Updated: 2017/04/26 16:11:25 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/filler.h"
+#include "libft.h"
 
-static void		init_struct(t_filler *filler)
+char		*ft_strdup(const char *str)
 {
-	filler->player = 0;
-	filler->width = 0;
-	filler->height = 0;
-	filler->letter = 0;
-}
+	int		i;
+	char	*dest;
+	int		len;
 
-int				main(void)
-{
-	t_filler	filler;
-
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
+	i = 0;
+	len = ft_strlen(str);
+	dest = (char *)malloc(sizeof(*dest) * len + 1);
+	if (dest == 0)
+		return (0);
+	while (len > 0)
 	{
-		break;	
-	}	
-	//map = ft_map();
-
-	return (0);
+		dest[i] = str[i];
+		i++;
+		len--;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
