@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/09 19:34:15 by acolas           ###   ########.fr       */
+/*   Created: 2019/01/09 14:50:32 by acolas            #+#    #+#             */
+/*   Updated: 2019/01/09 19:31:25 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void		init_struct(t_filler *filler)
+void	error(t_filler	*filler)
 {
-	filler->player = 0;
-	filler->w_map = 0;
-	filler->h_map = 0;
-	filler->w_piece = 0;
-	filler->h_piece = 0;
-	filler->me = 0;
-	filler->op = 0;
-	filler->map = NULL;
-	filler->piece = NULL;
-}
+	int		i;
+	
+	i = 0;
+	if (!filler->map)
+		while (filler->map[i] != '\0')
+		{
+			free(filler->map[i]);
+			i++;
+		}
+	if (!filler->piece)
+		while (filler->piece[i] != '\0')
+		{
+			free(filler->piece[i]);
+			i++;
+		}
 
-int				main(void)
-{
-	t_filler	filler;
+	free(filler->piece);
+	free(filler->map);	
 
-	init_struct(&filler);
-	ft_get_info(&filler);
-	while(1)
-	{
-		ft_parsing(&filler);
-		break;
-	}
-	return (0);
+	exit(0);
+	//free map
+	//	while
+	//free piece
+	//	while
 }
