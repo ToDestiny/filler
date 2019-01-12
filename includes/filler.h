@@ -20,11 +20,12 @@ typedef struct	s_filler
 }				t_filler;
 
 int		get_next_line(const int fd, char **line);
-void	ft_get_info(t_filler *filler);
+void	ft_player(t_filler *filler);
 int		ft_atoi(const char *str);
 char	**ft_strsplit(char const *s, char c);
 char	*ft_strdup(const char *str);
 void	ft_parsing(t_filler *filler);
 void	error(t_filler *filler);
+char	*ft_strstr(const char *str, const char *to_find);
 
 #endif

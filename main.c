@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/09 19:34:15 by acolas           ###   ########.fr       */
+/*   Updated: 2019/01/12 17:53:59 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int				main(void)
 	t_filler	filler;
 
 	init_struct(&filler);
-	ft_get_info(&filler);
+	ft_player(&filler);
 	while(1)
 	{
 		ft_parsing(&filler);
 		break;
 	}
+	for (int i= 0; i < filler.h_map; i++)
+		printf("%s\n", filler.map[i]);
 	return (0);
 }

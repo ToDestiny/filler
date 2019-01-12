@@ -6,7 +6,7 @@
 #    By: acolas <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
-#    Updated: 2019/01/09 15:57:58 by acolas           ###   ########.fr        #
+#    Updated: 2019/01/12 17:21:26 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = main.c \
 
 CC = gcc
 HEADER = ./libft/libft.a -I ./includes
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g#-fsanitize=address -g
 .PHONY : all clean fclean re
 
 all : $(NAME)
