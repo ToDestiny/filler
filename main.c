@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/12 17:53:59 by acolas           ###   ########.fr       */
+/*   Updated: 2019/01/13 16:32:29 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				main(void)
 	while(1)
 	{
 		ft_parsing(&filler);
+		ft_algo(&filler);
 		break;
 	}
 	for (int i= 0; i < filler.h_map; i++)

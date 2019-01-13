@@ -6,34 +6,41 @@
 #    By: acolas <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
-#    Updated: 2019/01/12 17:21:26 by acolas           ###   ########.fr        #
+#    Updated: 2019/01/13 16:52:19 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = acolas.filler
-SRC = main.c \
+EXEC_FILE = acolas.filler
+SRCS = main.c \
 	  src/ft_player.c\
 	  src/error.c\
 	  src/ft_parsing.c\
+	  src/ft_algo.c
 
-
+OBJS = $(SRCS:.c=.o)
 CC = gcc
-HEADER = ./libft/libft.a -I ./includes
+INCLUDES = -I libft/ -I ./includes
 CFLAGS = -Wall -Wextra -Werror -g#-fsanitize=address -g
+
 .PHONY : all clean fclean re
 
-all : $(NAME)
+all : $(EXEC_FILE)
 
-$(NAME) :
+$(EXEC_FILE) : $(OBJS) libft/libft.a  
+		@$(CC) -Llibft -lft $^ -o $@
+
+%.o: %.c
+	    @$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@
+
+libft/libft.a:
 		@make -C libft
-		@$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(HEADER)
 
 clean :
 		@make -C libft clean
-		@/bin/rm -rf $(OBJ)
+		@rm -rf $(OBJS)
 
 fclean : clean
 		@make -C libft fclean
-		@/bin/rm -rf $(NAME)
+		@rm -rf $(EXEC_FILE)
 
 re : fclean all

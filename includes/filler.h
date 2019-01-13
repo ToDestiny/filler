@@ -27,5 +27,6 @@ char	*ft_strdup(const char *str);
 void	ft_parsing(t_filler *filler);
 void	error(t_filler *filler);
 char	*ft_strstr(const char *str, const char *to_find);
+void	ft_algo(t_filler *filler);
 
 #endif
