@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/01/13 16:32:29 by acolas           ###   ########.fr       */
+/*   Updated: 2019/01/13 19:16:03 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ static void		init_struct(t_filler *filler)
 	filler->op = 0;
 	filler->map = NULL;
 	filler->piece = NULL;
+	filler->p1_x = 0;
+	filler->p1_y = 0;
+	filler->p2_x = 0;
+	filler->p2_y = 0;
 }
 
 int				main(void)
@@ -37,7 +41,7 @@ int				main(void)
 		ft_algo(&filler);
 		break;
 	}
-	for (int i= 0; i < filler.h_map; i++)
-		printf("%s\n", filler.map[i]);
+//	for (int i= 0; i < filler.h_map; i++)
+//		printf("%s\n", filler.map[i]);
 	return (0);
 }

@@ -16,6 +16,10 @@ typedef struct	s_filler
 	int		h_map;
 	int		w_piece;
 	int		h_piece;
+	int		p1_x;
+	int		p1_y;
+	int		p2_x;
+	int		p2_y;
 
 }				t_filler;
 
