@@ -6,12 +6,12 @@
 #    By: acolas <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
-#    Updated: 2019/01/13 16:52:19 by acolas           ###   ########.fr        #
+#    Updated: 2019/01/13 18:18:18 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 EXEC_FILE = acolas.filler
-SRCS = main.c \
+SRCS = src/main.c \
 	  src/ft_player.c\
 	  src/error.c\
 	  src/ft_parsing.c\
