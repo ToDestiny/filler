@@ -3,102 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: popanase <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/22 21:56:46 by acolas            #+#    #+#             */
-/*   Updated: 2017/08/09 21:54:47 by acolas           ###   ########.fr       */
+/*   Created: 2018/01/11 18:25:48 by popanase          #+#    #+#             */
+/*   Updated: 2018/03/22 18:05:28 by popanase         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_type	*ft_lstnew_gnl(int fd)
+void	ft_cut_buff(char *s)
 {
-	t_type	*stock;
+	int	i;
+	int j;
 
-	stock = (t_type *)malloc(sizeof(*stock));
-	stock->content = ft_strnew(1);
-	stock->rd = 1;
-	stock->fd = fd;
-	stock->next = NULL;
-	return (stock);
+	i = 0;
+	j = 0;
+	while (s[i] != '\n' && s[i])
+		i++;
+	if (s[i] == '\n')
+		i++;
+	while (s[i])
+	{
+		s[j] = s[i];
+		i++;
+		j++;
+	}
+	s[j] = '\0';
 }
 
-static t_type	*ft_find_fd(t_type *stat, int fd)
+void	ft_cut_str(char *s)
 {
-	t_type	*stock;
+	int i;
 
-	while (stat)
-	{
-		if (stat->fd == fd)
-			break ;
-		if (stat->next == NULL)
-		{
-			stock = ft_lstnew_gnl(fd);
-			stat->next = stock;
-			return (stock);
-		}
-		stat = stat->next;
-	}
-	return (stat);
+	i = 0;
+	while (s[i] != '\n' && s[i])
+		i++;
+	s[i] = '\0';
 }
 
-static int		ft_print_gnl(t_type **stock, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	char	*tmp1;
-	char	*tmp2;
+	static char	sb[BUFF_SIZE + 1];
+	char		*tmp;
+	char		b[BUFF_SIZE + 1];
+	int			r;
 
-	if ((tmp1 = ft_strchr((*stock)->content, '\n')) != NULL)
+	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 || read(fd, b, 0) == -1)
+		return (-1);
+	*line = ft_strdup(sb);
+	while (!ft_strchr(sb, '\n') && (r = read(fd, b, BUFF_SIZE)))
 	{
-		*tmp1 = '\0';
-		*line = ft_strdup((*stock)->content);
-		tmp2 = (*stock)->content;
-		(*stock)->content = ft_strdup(tmp1 + 1);
-		ft_strdel(&tmp2);
-		return (OK);
+		b[r] = '\0';
+		ft_strcpy(sb, b);
+		tmp = ft_strjoin(*line, sb);
+		free(*line);
+		*line = tmp;
 	}
-	return (END);
-}
-
-static int		ft_read_gnl(t_type **stock, char **line)
-{
-	char	buff[BUFF_SIZE + 1];
-	char	*tmp;
-
-	while (((*stock)->rd = read((*stock)->fd, buff, BUFF_SIZE)) > 0)
-	{
-		buff[(*stock)->rd] = '\0';
-		tmp = ft_strjoin((*stock)->content, buff);
-		ft_strdel(&(*stock)->content);
-		(*stock)->content = tmp;
-		if (ft_print_gnl(stock, line) == 1)
-			return (OK);
-	}
-	return (END);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static t_type	*stat;
-	t_type			*stock;
-
-	if (fd < 0 || line == NULL || BUFF_SIZE < 1)
-		return (ERROR);
-	if (!stat)
-		stat = ft_lstnew_gnl(fd);
-	stock = ft_find_fd(stat, fd);
-	if ((ft_read_gnl(&stock, line) == 1))
-		return (OK);
-	if (stock->rd == ERROR)
-		return (ERROR);
-	if (ft_strlen(stock->content) == 0)
-		return (END);
-	if (ft_print_gnl(&stock, line) == 1)
-		return (OK);
-	else
-	{
-		*line = ft_strdup(stock->content);
-		ft_strclr(stock->content);
-	}
-	return (OK);
+	if (!ft_strlen(sb) && r < BUFF_SIZE)
+		return (0);
+	ft_cut_buff(sb);
+	ft_cut_str(*line);
+	return (1);
 }

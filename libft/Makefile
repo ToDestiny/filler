@@ -80,6 +80,7 @@ SRC = ft_putchar.c \
 	  ft_lstiter.c \
 	  ft_lstmap.c \
 	  get_next_line.c \
+	  ft_free_arr.c \
 
 INC = libft.h
 

@@ -1,36 +1,29 @@
 #ifndef FILLER_H
 # define FILLER_H
+# define ABS(x) (((x) > 0) ? (x) : (-1) * (x))
+# define DIST(i, j, k, l) (ABS(i - k) + ABS(j - l))
+# include "../libft/libft.h"
 
-#include <stdlib.h>
-#include "../libft//libft.h"
-#include <stdio.h>
-
-typedef struct	s_filler
+typedef struct	s_map
 {
-	int		player;
-	char	me;
-	char	op;
-	char	**map;
-	char	**piece;
-	int		w_map;
-	int		h_map;
-	int		w_piece;
-	int		h_piece;
-	int		p1_x;
-	int		p1_y;
-	int		p2_x;
-	int		p2_y;
+	int		w;
+	int		h;
+	char		**m;
+	char		**p;
+	int		pw;
+	int		ph;
+	char		pc;
+	char		oc;
+}				t_map;
 
-}				t_filler;
+typedef struct	s_sol
+{
+	int		h;
+	int		w;
+	int		d;
+}				t_sol;
 
-int		get_next_line(const int fd, char **line);
-void	ft_player(t_filler *filler);
-int		ft_atoi(const char *str);
-char	**ft_strsplit(char const *s, char c);
-char	*ft_strdup(const char *str);
-void	ft_parsing(t_filler *filler);
-void	error(t_filler *filler);
-char	*ft_strstr(const char *str, const char *to_find);
-void	ft_algo(t_filler *filler);
+void			ft_play(t_map *map, t_sol *s);
+int			get_next_line(const int fd, char **line);
 
 #endif

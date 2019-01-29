@@ -12,10 +12,7 @@
 
 EXEC_FILE = acolas.filler
 SRCS = src/main.c \
-	  src/ft_player.c\
-	  src/error.c\
-	  src/ft_parsing.c\
-	  src/ft_algo.c
+	  src/play.c\
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
