@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/29 15:09:37 by acolas            #+#    #+#             */
+/*   Updated: 2019/01/29 15:20:50 by acolas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILLER_H
 # define FILLER_H
 # define ABS(x) (((x) > 0) ? (x) : (-1) * (x))
@@ -8,12 +20,12 @@ typedef struct	s_map
 {
 	int		w;
 	int		h;
-	char		**m;
-	char		**p;
+	char	**m;
+	char	**p;
 	int		pw;
 	int		ph;
-	char		pc;
-	char		oc;
+	char	pc;
+	char	oc;
 }				t_map;
 
 typedef struct	s_sol
@@ -24,6 +36,6 @@ typedef struct	s_sol
 }				t_sol;
 
 void			ft_play(t_map *map, t_sol *s);
-int			get_next_line(const int fd, char **line);
+int				get_next_line(const int fd, char **line);
 
 #endif
