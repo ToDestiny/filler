@@ -6,7 +6,7 @@
 #    By: acolas <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
-#    Updated: 2019/01/13 18:18:18 by acolas           ###   ########.fr        #
+#    Updated: 2019/02/04 23:54:17 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,14 @@ SRCS = src/main.c \
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 INCLUDES = -I libft/ -I ./includes
-CFLAGS = -Wall -Wextra -Werror -g#-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 .PHONY : all clean fclean re
 
 all : $(EXEC_FILE)
 
 $(EXEC_FILE) : $(OBJS) libft/libft.a  
-		@$(CC) -Llibft -lft $^ -o $@
+		@$(CC) $(CFLAGS) -Llibft -lft $^ -o $@
 
 %.o: %.c
 	    @$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@

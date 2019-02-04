@@ -6,7 +6,7 @@
 /*   By: acolas <acolas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 20:47:54 by acolas            #+#    #+#             */
-/*   Updated: 2017/05/02 20:47:55 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/04 18:35:47 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ static int	ft_count_word(char const *s, char c)
 		count++;
 	while (s[i] != '\0')
 	{
-		if ((s[i - 1] == c) && (s[i] != c))
-		{
-			count++;
+		if (i > 1)
+			if ((s[i - 1] == c) && (s[i] != c))
+			{
+				count++;
+				i++;
+			}
 			i++;
-		}
-		i++;
 	}
 	return (count);
 }
