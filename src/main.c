@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/05 16:50:32 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/04 23:55:05 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,14 @@ void	ft_read_map(t_map *map)
 	{
 		get_next_line(0, &s);
 		if (!(map->m[i] = (char *)ft_memalloc(sizeof(char) * (map->w + 1))))
-			break;
+			exit (0);
 		if (ft_strchr(s, ' ') == 0)
-			break;
+			exit (0);
 		else
 			ft_strcpy(map->m[i], ft_strchr(s, ' ') + 1);
 		free(s);
 		i++;
 	}
-	if (i != map->h)
-	{
-		while (i--)
-			free(map->m[i]);
-		free(map);
-		free(s);
-		exit(EXIT_FAILURE);
-
-	}
-	map->m[i] = NULL;
 }
 
 void	ft_read_piece(t_map *map)
@@ -78,36 +68,24 @@ void	ft_read_piece(t_map *map)
 	{
 		get_next_line(0, &s);
 		if (!(map->p[i] = ft_strdup(s)))
-			break;
+				exit (0);
 		free(s);
 		i++;
 	}
-	if (i != map->ph)
-	{
-		while(i--)
-			free(map->ph[i]);
-		free(map);
-		free(s);
-		exit(EXIT_FAILURE);
-	}
-	map->ph[i] = NULL;
 }
 
-static void ft_exit(char *s, char **a)
+void	ft_read(t_map *map)
 {
-	free(s);
-	ft_free_arr(a);
-	exit(EXIT_FAILURE);
-}
+	char	*s;
+	char	**a;
 
-void	ft_read(t_map *map, char *s, char **a)
-{
 	while (get_next_line(0, &s) > -1)
 	{
 		if (ft_strncmp(s, "Plateau", 7) == 0)
 		{
-			if ((a = ft_strsplit(s, ' ')) && (!(a[1]) || !(a[2])))
-				ft_exit(s, a);
+			a = ft_strsplit(s, ' ');
+			if (!(a[1]) || !(a[2]))
+				exit(0);
 			map->h = ft_atoi(a[1]);
 			map->w = ft_atoi(a[2]);
 			ft_read_map(map);
@@ -115,8 +93,9 @@ void	ft_read(t_map *map, char *s, char **a)
 		}
 		if (ft_strncmp(s, "Piece", 5) == 0)
 		{
-			if ((a = ft_strsplit(s, ' ')) && (!(a[1]) || !(a[2])))
-				ft_exit(s, a);
+			a = ft_strsplit(s, ' ');
+			if (!(a[1]) || !(a[2]))
+				exit (0);
 			map->ph = ft_atoi(a[1]);
 			map->pw = ft_atoi(a[2]);
 			ft_read_piece(map);
@@ -150,6 +129,6 @@ int		main(void)
 		map.oc = 'O';
 	}
 	free(s);
-	ft_read(&map, NULL, NULL);
+	ft_read(&map);
 	return (1);
 }
