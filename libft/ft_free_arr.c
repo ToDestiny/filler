@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:29:58 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/04 23:31:11 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/12 16:40:58 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	ft_free_arr(char **a)
 	int	i;
 
 	i = 0;
+	if (a == NULL)
+		return ;
 	while (a[i])
 	{
 		free(a[i]);
 		i++;
 	}
 	free(a);
+	a = NULL;
 }

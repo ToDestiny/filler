@@ -6,11 +6,12 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 15:29:41 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/04 21:54:57 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/12 16:42:41 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include <stdio.h>
 
 int		ft_count_dist(t_map *map, int i, int j)
 {
@@ -113,6 +114,8 @@ void	ft_play(t_map *map, t_sol *s)
 	int j;
 
 	i = 0;
+	if (map->m == NULL || s == NULL || map->p == NULL)
+		return ;
 	while (i < map->h)
 	{
 		j = 0;
