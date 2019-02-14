@@ -6,7 +6,7 @@
 /*   By: acolas <acolas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/14 12:16:14 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/14 13:01:39 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		ft_read_map(t_map *map)
 		return ;
 	}
 	free(s);
+	s = NULL;
 	ft_read_map_part_two(map, s, i);
 }
 
@@ -63,12 +64,15 @@ void		ft_read_piece(t_map *map)
 		if (!(map->p[i] = ft_strdup(s)))
 			break ;
 		free(s);
+		s = NULL;
 		i++;
 	}
 	if (i != map->ph)
 	{
 		free(s);
+		s = NULL;
 		ft_free_arr(map->p);
+		map->m = NULL;
 	}
 }
 
@@ -93,8 +97,10 @@ void		ft_read(t_map *map, char **a)
 		}
 		ft_read_second_part(map, s, a);
 		free(s);
+		s = NULL;
 	}
 	free(s);
+	s = NULL;
 }
 
 int			main(void)
@@ -113,6 +119,7 @@ int			main(void)
 	if (ft_player(&map, s) == 0)
 		return (0);
 	free(s);
+	s = NULL;
 	ft_read(&map, a);
 	return (1);
 }
