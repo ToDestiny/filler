@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: acolas <acolas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 12:11:22 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/12 16:41:31 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/14 12:16:14 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	ft_find_solution(t_map *map)
+void		ft_find_solution(t_map *map)
 {
 	t_sol	*s;
 
@@ -29,14 +29,10 @@ void	ft_find_solution(t_map *map)
 	ft_putchar(' ');
 	ft_putnbr(s->w);
 	ft_putchar('\n');
-	/*
-	if (s->h == -1)
-		return ;
-	*/
 	free(s);
 }
 
-void	ft_read_map(t_map *map)
+void		ft_read_map(t_map *map)
 {
 	char	*s;
 	int		i;
@@ -50,26 +46,10 @@ void	ft_read_map(t_map *map)
 		return ;
 	}
 	free(s);
-	while (i < map->h)
-	{
-		get_next_line(0, &s);
-		if (!(map->m[i] = (char *)ft_memalloc(sizeof(char) * (map->w + 1))))
-			break ;
-		if (ft_strchr(s, ' ') == 0)
-			break ;
-		else
-			ft_strcpy(map->m[i], ft_strchr(s, ' ') + 1);
-		free(s);
-		i++;
-	}
-	if (i != map->h)
-	{
-		free(s);
-		ft_free_arr(map->m);
-	}
+	ft_read_map_part_two(map, s, i);
 }
 
-void	ft_read_piece(t_map *map)
+void		ft_read_piece(t_map *map)
 {
 	char	*s;
 	int		i;
@@ -81,7 +61,7 @@ void	ft_read_piece(t_map *map)
 	{
 		get_next_line(0, &s);
 		if (!(map->p[i] = ft_strdup(s)))
-			 break ;
+			break ;
 		free(s);
 		i++;
 	}
@@ -92,30 +72,10 @@ void	ft_read_piece(t_map *map)
 	}
 }
 
-static void ft_read_second_part(t_map *map, char *s, char **a)
+void		ft_read(t_map *map, char **a)
 {
-	if (ft_strncmp(s, "Piece", 5) == 0)
-	{
-		a = ft_strsplit(s, ' ');
-		if (!(a[1]) || !(a[2]))
-		{
-			ft_free_arr(a);
-			return ;
-		}
-		map->ph = ft_atoi(a[1]);
-		map->pw = ft_atoi(a[2]);
-		ft_read_piece(map);
-		ft_find_solution(map);
-		ft_free_arr(map->p);
-		map->p = NULL;
-		ft_free_arr(map->m);
-		map->m = NULL;
-		ft_free_arr(a);
-	}
-}
+	char	*s;
 
-void	ft_read(t_map *map, char *s, char **a)
-{
 	while (get_next_line(0, &s))
 	{
 		if (ft_strncmp(s, "Plateau", 7) == 0)
@@ -137,32 +97,22 @@ void	ft_read(t_map *map, char *s, char **a)
 	free(s);
 }
 
-int		main(void)
+int			main(void)
 {
 	t_map	map;
 	char	*s;
 	int		i;
-	char	*t;
 	char	**a;
 
 	i = 0;
-	t = NULL;
 	a = NULL;
 	if (!(get_next_line(0, &s)))
 		return (0);
 	if (ft_strlen(s) < 11)
 		return (0);
-	if (s[10] == '1')
-	{
-		map.pc = 'O';
-		map.oc = 'X';
-	}
-	else if (s[10] == '2')
-	{
-		map.pc = 'X';
-		map.oc = 'O';
-	}
+	if (ft_player(&map, s) == 0)
+		return (0);
 	free(s);
-	ft_read(&map, t, a);
+	ft_read(&map, a);
 	return (1);
 }

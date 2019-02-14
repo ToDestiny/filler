@@ -6,7 +6,7 @@
 /*   By: acolas <acolas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 20:47:54 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/04 18:35:47 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/13 16:18:04 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_count_word(char const *s, char c)
 				count++;
 				i++;
 			}
-			i++;
+		i++;
 	}
 	return (count);
 }

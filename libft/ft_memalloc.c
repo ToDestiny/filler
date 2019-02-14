@@ -6,7 +6,7 @@
 /*   By: acolas <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 17:20:47 by acolas            #+#    #+#             */
-/*   Updated: 2019/02/04 22:07:45 by acolas           ###   ########.fr       */
+/*   Updated: 2019/02/13 16:15:42 by acolas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memalloc(size_t size)
 	ptr = malloc(size);
 	while (ptr && index < size)
 	{
-		((char *) ptr)[index] = 0;
+		((char *)ptr)[index] = 0;
 		index++;
 	}
 	return (ptr);
