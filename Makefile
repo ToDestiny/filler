@@ -6,7 +6,7 @@
 #    By: acolas <acolas@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 16:54:15 by acolas            #+#    #+#              #
-#    Updated: 2019/02/14 12:00:44 by acolas           ###   ########.fr        #
+#    Updated: 2019/02/14 12:50:06 by acolas           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = src/main.c \
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 INCLUDES = -I libft/ -I ./includes
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 .PHONY : all clean fclean re
 
